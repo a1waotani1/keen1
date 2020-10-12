@@ -1,11 +1,10 @@
 import React, { useContext } from 'react';
 import { createStackNavigator, createBottomTabNavigator } from '@react-navigation/stack';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-
-
-const Stack = createStackNavigator();
+import { AuthContext } from '../navigation/AuthProvider';
 
 const HomeScreen = () => {
+    const { user, logout } = useContext(AuthContext);
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Welcome {user.uid}</Text>

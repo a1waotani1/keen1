@@ -1,7 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { AuthContext } from '../navigation/AuthProvider';
 
 const RegisterScreen = ({ navigation }) => {
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+
+    const { register } = useContext(AuthContext);
+
     return (
         <View style={styles.container}>
             <Text style={styles.logo}>create a new account</Text>

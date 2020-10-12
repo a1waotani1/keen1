@@ -1,7 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { AuthContext } from '../navigation/AuthProvider';
 
 const LoginScreen = ({ navigation }) => {
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+
+    const { login } = useContext(AuthContext);
     return (
         <View style={styles.container}>
             <Text style={styles.logo}>keen</Text>

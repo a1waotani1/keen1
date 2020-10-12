@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>931824193161-67qle5d8vomh4sl6pa50g38grcaell8i.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.931824193161-67qle5d8vomh4sl6pa50g38grcaell8i</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDlY39SDcxdaSeUM0jddt01LipfmU2QQGg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>931824193161</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.keen</string>
+	<key>PROJECT_ID</key>
+	<string>keen-aeb68</string>
+	<key>STORAGE_BUCKET</key>
+	<string>keen-aeb68.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:931824193161:ios:2e629314b5dbce2cf48058</string>
+	<key>DATABASE_URL</key>
+	<string>https://keen-aeb68.firebaseio.com</string>
+</dict>
+</plist>
