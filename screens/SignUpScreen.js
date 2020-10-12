@@ -34,7 +34,7 @@ const RegisterScreen = ({ navigation }) => {
 
                 <TouchableOpacity style={styles.UsrBtn1}
                     onPress={() => register(email, password)}>
-                    <Text style={styles.btnTxt}>新規登録</Text>
+                    <Text style={styles.btnTxt}>sign up</Text>
                 </TouchableOpacity>
 
             </View>
@@ -69,10 +69,11 @@ const styles = StyleSheet.create({
     },
     UsrBtn1: {
         backgroundColor: '#FCD46F',
-        width: 150,
+        width: 200,
         padding: 12,
         marginBottom: 60,
         borderRadius: 32,
+        marginTop: 50,
     },
 
     BtnContainer: {
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
     btnTxt: {
         fontFamily: 'Montserrat-SemiBold',
         letterSpacing: 2,
-        fontSize: 18,
+        fontSize: 20,
         textAlign: 'center',
     },
 });

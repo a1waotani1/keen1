@@ -27,7 +27,7 @@ const LoginScreen = ({ navigation }) => {
 
                 <TouchableOpacity style={styles.UsrBtn1}
                     onPress={() => login(email, password)}>
-                    <Text style={styles.btnTxt}>ログイン</Text>
+                    <Text style={styles.btnTxt}>login</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
