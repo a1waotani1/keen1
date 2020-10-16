@@ -1,14 +1,21 @@
 import React, { useContext } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { AuthContext } from '../navigation/AuthProvider';
 
 const CourseScreen = () => {
     const { user } = useContext(AuthContext);
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text> This is my course screen </Text>
-        </View>
+        <ScrollView style={style.container}>
+
+        </ScrollView>
     );
 }
 
 export default CourseScreen;
+
+const style = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+    }
+})

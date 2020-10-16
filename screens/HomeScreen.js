@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { createStackNavigator, createBottomTabNavigator } from '@react-navigation/stack';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+
+import { View, Text, StyleSheet, TouchableOpacity, } from 'react-native';
 import { AuthContext } from '../navigation/AuthProvider';
 
 const HomeScreen = () => {

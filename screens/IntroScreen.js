@@ -25,8 +25,8 @@ const IntroScreen = ({ navigation }) => {
                 >
                     <View style={{ width, height }}>
                         <View style={styles.wrapper}>
-                            <Text style={styles.header}>Welcome to {"\n"}keen</Text>
-
+                            <Text style={styles.header}>Welcome to </Text>
+                            <Text style={styles.headerSpan}>keen</Text>
                         </View>
                     </View>
                     <View style={{ width, height }}>
@@ -49,7 +49,6 @@ export default IntroScreen;
 
 const styles = StyleSheet.create({
     wrapper: {
-        justifyContent: 'center',
         alignItems: 'center',
         marginVertical: 200,
         margin: 20,
@@ -58,7 +57,12 @@ const styles = StyleSheet.create({
         fontFamily: "Montserrat-SemiBold",
         fontSize: 35,
         letterSpacing: 2,
-
+    },
+    headerSpan: {
+        fontFamily: "Montserrat-SemiBold",
+        fontSize: 35,
+        letterSpacing: 2,
+        color: '#7DCEA0',
     },
     StartBtn: {
         backgroundColor: '#7DCEA0',

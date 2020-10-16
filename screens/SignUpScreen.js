@@ -10,7 +10,7 @@ const RegisterScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.logo}>create a new account</Text>
+            <Text style={styles.logo}>Create A New Account</Text>
 
             <TextInput style={styles.input}
                 placeholder="メール"
