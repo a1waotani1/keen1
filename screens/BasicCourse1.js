@@ -4,7 +4,6 @@ import { AuthContext } from '../navigation/AuthProvider';
 import LinearGradient from 'react-native-linear-gradient';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import CheckBox from '@react-native-community/checkbox';
-import Basic2 from '../screens/BasicCourse2';
 
 const BasicCourse = ({ navigation }) => {
 
@@ -29,7 +28,7 @@ const BasicCourse = ({ navigation }) => {
                             name="play"
                             color="#333"
                             backgroundColor="transparent"
-                            onPress={() => navigation.navigate('Basic2')}
+                        // onPress={() => navigation.navigate('Basic2')}
                         />
                     </View>
                 </LinearGradient>

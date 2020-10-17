@@ -14,7 +14,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import SearchScreen from '../screens/SearchScreen';
 import DiscoverScreen from '../screens/DiscoverScreen';
 import BasicCourse1Screen from '../screens/BasicCourse1';
-import BasicCourse2Screen from '../screens/BasicCourse2';
+
 
 const HomeStack = createStackNavigator();
 const CourseStack = createStackNavigator();
@@ -23,7 +23,7 @@ const ProfileStack = createStackNavigator();
 const SearchStack = createStackNavigator();
 const DiscoverStack = createStackNavigator();
 const BasicCourse1Stack = createStackNavigator();
-const BasicCourse2Stack = createStackNavigator();
+
 
 const Tab = createBottomTabNavigator();
 
@@ -140,11 +140,16 @@ const CourseStackScreen = () => (
         <CourseStack.Screen
             name="Course"
             component={CourseScreen}
-        />
-        <BasicCourse2Stack.Screen
-            name="Basic2"
-            component={BasicCourse2Screen}
-            options={{ header: () => null }}
+            options={() => ({
+                title: '',
+                headerTransparent: true,
+                headerStyle: {
+                    backgroundColor: '#fff',
+                    shadowColor: '#fff',
+
+                },
+            })}
+
         />
     </CourseStack.Navigator>
 );
@@ -215,25 +220,6 @@ const DiscoverStackScreen = ({ navigation }) => (
                     </View>
                 )
             })}
-        />
-        <BasicCourse2Stack.Screen
-            name="Basic2"
-            component={BasicCourse2Screen}
-            options={{
-                title: '',
-                headerTransparent: true,
-                headerLeft: () => (
-                    <View style={{ marginLeft: 10 }}>
-                        <IonIcons.Button
-                            name="chevron-back-outline"
-                            size={30}
-                            backgroundColor="transparent"
-                            color="#333"
-                            onPress={() => navigation.navigate('Discover')}
-                        />
-                    </View>
-                )
-            }}
         />
     </DiscoverStack.Navigator>
 );
