@@ -3,79 +3,91 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-nati
 import { AuthContext } from '../navigation/AuthProvider';
 import LinearGradient from 'react-native-linear-gradient';
 import CheckBox from '@react-native-community/checkbox';
+import firestore from '@react-native-firebase/firestore';
 
 const CourseScreen = () => {
     const { user } = useContext(AuthContext);
+    const ref = firestore().collection('courses');
     const [value] = useState([false, false, false, false])
-    return (
-        <LinearGradient
-            colors={['#7DCEA0', '#6D68B1']}
-            style={styles.container}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-        >
-            <ScrollView>
-                <View style={styles.headerContainer}>
-                    <Text style={styles.headerTxt}>Basic Course</Text>
-                    <Text style={styles.headerSubTxt}>A way to get things started</Text>
-                    <Text style={styles.headerSubTxt1}>4 steps</Text>
-                </View>
-                <View style={{ paddingBottom: 10 }}>
-                    <Text style={styles.headerSubTxt2}>? completed</Text>
-                </View>
-                <View>
 
-                    <View style={{ flexDirection: 'row', padding: 10 }}>
-                        <CheckBox
-                            disabled={false}
-                            value={value[0]}
-                            // onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                            tintColor="#333"
-                            onCheckColor="#fff"
-                            onTintColor="#fff"
-                        />
-                        <Text style={styles.infoTxt}>wake up at 8 - 9 am everyday</Text>
+    function Course({ id, title, complete }) {
+        async function toggleComplete() {
+            await firestore()
+                .collection('courses')
+                .doc(MxYFDSYsWLRj2lOUEaAQ)
+                .update({
+                    complete: !complete,
+                });
+        }
+        return (
+            <LinearGradient
+                colors={['#7DCEA0', '#6D68B1']}
+                style={styles.container}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+            >
+                <ScrollView>
+                    <View style={styles.headerContainer}>
+                        <Text style={styles.headerTxt}>Basic Course</Text>
+                        <Text style={styles.headerSubTxt}>A way to get things started</Text>
+                        <Text style={styles.headerSubTxt1}>4 steps</Text>
                     </View>
+                    <View style={{ paddingBottom: 10 }}>
+                        <Text style={styles.headerSubTxt2}>? completed</Text>
+                    </View>
+                    <View>
 
-                    <View style={{ flexDirection: 'row', padding: 10 }}>
-                        <CheckBox
-                            disabled={false}
-                            value={value[1]}
-                            // onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                            tintColor="#333"
-                            onCheckColor="#fff"
-                            onTintColor="#fff"
-                        />
-                        <Text style={styles.infoTxt}>go to sleep between 9pm - 12am</Text>
+                        <View style={{ flexDirection: 'row', padding: 10 }}>
+                            <CheckBox
+                                disabled={false}
+                                value={value[0]}
+                                onValueChange={() => toggleComplete()}
+                                tintColor="#333"
+                                onCheckColor="#fff"
+                                onTintColor="#fff"
+                            />
+                            <Text style={styles.infoTxt}>wake up at 8 - 9 am everyday</Text>
+                        </View>
+
+                        <View style={{ flexDirection: 'row', padding: 10 }}>
+                            <CheckBox
+                                disabled={false}
+                                value={value[1]}
+                                // onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                                tintColor="#333"
+                                onCheckColor="#fff"
+                                onTintColor="#fff"
+                            />
+                            <Text style={styles.infoTxt}>go to sleep between 9pm - 12am</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', padding: 10 }}>
+                            <CheckBox
+                                disabled={false}
+                                value={value[2]}
+                                // onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                                tintColor="#333"
+                                onCheckColor="#fff"
+                                onTintColor="#fff"
+                            />
+                            <Text style={styles.infoTxt}>eat 3 meals a day</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', padding: 10 }}>
+                            <CheckBox
+                                disabled={false}
+                                value={value[3]}
+                                // onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                                tintColor="#333"
+                                onCheckColor="#fff"
+                                onTintColor="#fff"
+                            />
+                            <Text style={styles.infoTxt}>drink atleast 2 cups of water</Text>
+                        </View>
                     </View>
-                    <View style={{ flexDirection: 'row', padding: 10 }}>
-                        <CheckBox
-                            disabled={false}
-                            value={value[2]}
-                            // onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                            tintColor="#333"
-                            onCheckColor="#fff"
-                            onTintColor="#fff"
-                        />
-                        <Text style={styles.infoTxt}>eat 3 meals a day</Text>
-                    </View>
-                    <View style={{ flexDirection: 'row', padding: 10 }}>
-                        <CheckBox
-                            disabled={false}
-                            value={value[3]}
-                            // onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                            tintColor="#333"
-                            onCheckColor="#fff"
-                            onTintColor="#fff"
-                        />
-                        <Text style={styles.infoTxt}>drink atleast 2 cups of water</Text>
-                    </View>
-                </View>
-            </ScrollView>
-        </LinearGradient>
-    );
+                </ScrollView>
+            </LinearGradient>
+        );
+    }
 }
-
 export default CourseScreen;
 
 const styles = StyleSheet.create({

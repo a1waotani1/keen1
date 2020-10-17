@@ -5,10 +5,11 @@ import LinearGradient from 'react-native-linear-gradient';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import CheckBox from '@react-native-community/checkbox';
 
+
+
 const BasicCourse = ({ navigation }) => {
 
     const { user } = useContext(AuthContext);
-    const [toggleCheckBox, setToggleCheckBox] = useState(false)
     return (
         <ScrollView style={styles.container}>
             <View styles={styles.headerContainer}>
