@@ -65,7 +65,7 @@ const MainStack = () => (
             }}
         />
         <Tab.Screen
-            name="探す"
+            name="見つける"
             component={DiscoverStackScreen}
             options={{
                 tabBarLabel: '見つける',
@@ -197,6 +197,7 @@ const DiscoverStackScreen = ({ navigation }) => (
             component={BasicCourse1Screen}
             options={() => ({
                 title: '',
+                headerTransparent: true,
                 headerStyle: {
                     backgroundColor: '#fff',
                     shadowColor: '#fff',
@@ -218,7 +219,21 @@ const DiscoverStackScreen = ({ navigation }) => (
         <BasicCourse2Stack.Screen
             name="Basic2"
             component={BasicCourse2Screen}
-            options={{ header: () => null }}
+            options={{
+                title: '',
+                headerTransparent: true,
+                headerLeft: () => (
+                    <View style={{ marginLeft: 10 }}>
+                        <IonIcons.Button
+                            name="chevron-back-outline"
+                            size={30}
+                            backgroundColor="transparent"
+                            color="#333"
+                            onPress={() => navigation.navigate('Discover')}
+                        />
+                    </View>
+                )
+            }}
         />
     </DiscoverStack.Navigator>
 );

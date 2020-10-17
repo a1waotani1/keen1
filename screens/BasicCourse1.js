@@ -3,10 +3,13 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Button } from 're
 import { AuthContext } from '../navigation/AuthProvider';
 import LinearGradient from 'react-native-linear-gradient';
 import IonIcons from 'react-native-vector-icons/Ionicons';
+import CheckBox from '@react-native-community/checkbox';
 import Basic2 from '../screens/BasicCourse2';
 
 const BasicCourse = ({ navigation }) => {
+
     const { user } = useContext(AuthContext);
+    const [toggleCheckBox, setToggleCheckBox] = useState(false)
     return (
         <ScrollView style={styles.container}>
             <View styles={styles.headerContainer}>
@@ -34,11 +37,39 @@ const BasicCourse = ({ navigation }) => {
             <View>
                 <Text style={styles.titleTxt}>steps</Text>
             </View>
-            <View>
-                <Text style={styles.infoTxt}>wake up at 8 - 9 am everyday</Text>
-                <Text style={styles.infoTxt}>go to sleep between 9pm - 12am</Text>
-                <Text style={styles.infoTxt}>eat 3 meals a day</Text>
-                <Text style={styles.infoTxt}>drink atleast 2 cups of water</Text>
+            <View >
+                <View style={{ flexDirection: 'row' }}>
+                    <CheckBox
+                        disabled={false}
+                        value={toggleCheckBox}
+                        onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                    />
+                    <Text style={styles.infoTxt}>wake up at 8 - 9 am everyday</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                    <CheckBox
+                        disabled={false}
+                        value={toggleCheckBox}
+                        onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                    />
+                    <Text style={styles.infoTxt}>go to sleep between 9pm - 12am</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                    <CheckBox
+                        disabled={false}
+                        value={toggleCheckBox}
+                        onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                    />
+                    <Text style={styles.infoTxt}>eat 3 meals a day</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                    <CheckBox
+                        disabled={false}
+                        value={toggleCheckBox}
+                        onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                    />
+                    <Text style={styles.infoTxt}>drink atleast 2 cups of water</Text>
+                </View>
             </View>
         </ScrollView>
     );
@@ -50,10 +81,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+        padding: 20,
     },
     linearGradient: {
         height: 200,
         marginBottom: 20,
+        marginTop: 20
     },
     headerItems: {
         alignItems: 'center'
