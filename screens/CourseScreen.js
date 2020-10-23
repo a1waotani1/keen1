@@ -16,8 +16,10 @@ const CourseScreen = () => {
         key3: false,
         key4: false,
     })
+
+
     useEffect(async () => {
-        const firebasedocuid = firestore().collection('courses').doc(user.uid).get()
+        const firebasedocuid = await firestore().collection('courses').doc(user.uid).get()
         const hoge = firebasedocuid.id ? true : false
         // Alert.alert(JSON.stringify(hoge))
         if (hoge == false) {
@@ -26,6 +28,9 @@ const CourseScreen = () => {
                 .collection('courses')
                 .doc(user.uid)
                 .set(value);
+        } else {
+            setValue(firebasedocuid.data())
+
         }
     }, [])
 
@@ -37,6 +42,13 @@ const CourseScreen = () => {
             .collection('courses')
             .doc(user.uid)
             .update(value);
+    }
+
+    const ProgressData = async () => {
+        const firebasedata = await firestore().collection('courses').doc(user.uid).get();
+        const count = Object.values(firebasedata.data()).filter(v => v).length;
+
+        // Alert.alert(JSON.stringify(count))
     }
 
     // const firebasedocuid = await firestore().collection('courses').where(firestore().FieldPath.documentId(), '==', 'b8fTkdwKcgeHgZHPEpvj').get()

@@ -1,14 +1,21 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { createStackNavigator, createBottomTabNavigator } from '@react-navigation/stack';
 import LinearGradient from 'react-native-linear-gradient';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { AuthContext } from '../navigation/AuthProvider';
 import { ProgressCircle } from 'react-native-svg-charts';
 import firestore from '@react-native-firebase/firestore';
 
 const HomeScreen = () => {
     const { user } = useContext(AuthContext);
-    const firebasedocuid = firestore().collection('courses').doc(user.uid).get()
+    const [progress, setProgress] = useState(0)
+
+    async function myAsyncEffect() {
+        const firebasedata = await firestore().collection('courses').doc(user.uid).get();
+        const count = Object.values(firebasedata.data()).filter(v => v).length * 0.25;
+        setProgress(count)
+    }
+    useEffect(() => { myAsyncEffect() }, []);
 
     return (
         <ScrollView style={styles.container}>
@@ -17,11 +24,11 @@ const HomeScreen = () => {
                 <View>
                     <ProgressCircle
                         style={{ height: 150, marginBottom: 20, }}
-                        progress={0.50}
+                        progress={progress}
                         progressColor={'#7DCEA0'}
                         strokeWidth={10}
                     />
-                    <Text style={styles.dataTxt}>50%{"\n"}complete</Text>
+                    <Text style={styles.dataTxt}>{progress * 100}%{"\n"}complete</Text>
                 </View>
                 <Text style={styles.titleTxt}>Your Ongoing Course</Text>
                 <TouchableOpacity>
