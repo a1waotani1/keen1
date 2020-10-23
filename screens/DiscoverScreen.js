@@ -69,7 +69,11 @@ const DiscoverScreen = ({ navigation }) => {
                     </LinearGradient>
                 </TouchableOpacity>
             </ScrollView>
+            <LinearGradient
+                colors={['#6D68B1', '#6887F3']}
+                style={styles.linearGradient}>
 
+            </LinearGradient>
         </ScrollView>
     );
 }

@@ -1,15 +1,28 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { createStackNavigator, createBottomTabNavigator } from '@react-navigation/stack';
 import LinearGradient from 'react-native-linear-gradient';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { AuthContext } from '../navigation/AuthProvider';
+import { ProgressCircle } from 'react-native-svg-charts';
+import firestore from '@react-native-firebase/firestore';
 
 const HomeScreen = () => {
-    const { user, logout } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
+    const firebasedocuid = firestore().collection('courses').doc(user.uid).get()
+
     return (
         <ScrollView style={styles.container}>
             <View>
                 <Text style={styles.headerTxt}>Today's Stats</Text>
+                <View>
+                    <ProgressCircle
+                        style={{ height: 150, marginBottom: 20, }}
+                        progress={0.50}
+                        progressColor={'#7DCEA0'}
+                        strokeWidth={10}
+                    />
+                    <Text style={styles.dataTxt}>50%{"\n"}complete</Text>
+                </View>
                 <Text style={styles.titleTxt}>Your Ongoing Course</Text>
                 <TouchableOpacity>
                     <LinearGradient
@@ -23,7 +36,7 @@ const HomeScreen = () => {
                 </TouchableOpacity>
 
             </View>
-        </ScrollView>
+        </ScrollView >
     );
 }
 
@@ -68,11 +81,21 @@ const styles = StyleSheet.create({
         height: 80,
         borderRadius: 10,
         marginBottom: 10,
+        padding: 10,
     },
     courseTxt: {
         fontFamily: 'Montserrat-SemiBold',
         fontSize: 20,
         letterSpacing: 1,
         color: "#fff",
+        paddingTop: 15,
+        paddingLeft: 10,
+    },
+    dataTxt: {
+        fontFamily: 'Montserrat-SemiBold',
+        fontSize: 30,
+        letterSpacing: 2,
+        marginTop: 20
+
     }
 });
