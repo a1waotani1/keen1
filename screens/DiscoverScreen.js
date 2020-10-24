@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal } from 'react-native';
 import { AuthContext } from '../navigation/AuthProvider';
 import LinearGradient from 'react-native-linear-gradient';
-
+import IonIcons from 'react-native-vector-icons/Ionicons';
 
 const DiscoverScreen = ({ navigation }) => {
     const { user } = useContext(AuthContext);
@@ -11,29 +11,30 @@ const DiscoverScreen = ({ navigation }) => {
         <ScrollView style={styles.container}>
             <Modal visible={modalOpen}
                 animationType="slide">
-                <View style={{ marginTop: 40 }}>
+                <View>
                     <View styles={styles.headerContainer}>
                         <LinearGradient
                             colors={['#7DCEA0', '#FCD46F']}
-                            style={styles.linearGradient}
+                            style={styles.linearGradient2}
                         >
+                            <View>
+                                <TouchableOpacity style={{ alignSelf: 'flex-end', marginRight: 30, paddingTop: 10 }} onPress={() => setModalOpen(false)} >
+                                    <IonIcons name="close-circle" size={30} color="rgba(102,102,102,0.4)" />
+                                </TouchableOpacity></View>
                             <View style={styles.headerItems}>
+
                                 <Text style={styles.headerTxt}>
                                     Basic Course
                     </Text>
-                                <Text style={styles.headerTxt2}>
-                                    This course will help you start your keen journey {"\n"}to
-                            a better lifestyle habit
+                                <Text style={styles.subTxt}>
+                                    The basic course was created in order to help get you started
+                                    on your new keen journey of a better self. You'll be
+                                    able to wake up earlier, stay hydrated and more
                     </Text>
                             </View>
                         </LinearGradient>
                     </View>
                 </View>
-                <TouchableOpacity style={styles.StartBtn}
-                    onPress={() => setModalOpen(false)}>
-                    <Text style={styles.btnTxt}>START NOW
-                                </Text>
-                </TouchableOpacity>
             </Modal>
             <View style={styles.headerContainer}>
                 <LinearGradient
@@ -96,9 +97,17 @@ const DiscoverScreen = ({ navigation }) => {
                 </TouchableOpacity>
             </ScrollView>
             <LinearGradient
-                colors={['#6D68B1', '#6887F3']}
+                colors={['#FCD071', '#FDA452']}
                 style={styles.linearGradient}>
-
+                <View style={styles.headerItems}>
+                    <Text style={styles.headerTxt}>
+                        Fun Fact!
+                    </Text>
+                    <Text style={styles.headerTxt2}>
+                        Did you know? {"\n"}
+                        Optimism may help you live longer !
+                    </Text>
+                </View>
             </LinearGradient>
         </ScrollView >
     );
@@ -129,6 +138,18 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-SemiBold',
         color: '#333',
         marginTop: 5,
+        justifyContent: 'center',
+        textAlign: 'center',
+    },
+    subTxt: {
+        fontSize: 16,
+        fontFamily: 'Montserrat-Regular',
+        color: '#333',
+        marginTop: 15,
+        justifyContent: 'center',
+        textAlign: 'center',
+        lineHeight: 30,
+        margin: 20,
     },
     StartBtn: {
         backgroundColor: '#EB9969',
@@ -154,5 +175,9 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-SemiBold',
         color: '#fff',
         margin: 20,
-    }
+    },
+    linearGradient2: {
+        height: 400,
+        paddingTop: 40,
+    },
 })

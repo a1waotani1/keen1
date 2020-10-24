@@ -37,7 +37,7 @@
 		DEB8EC4170A643B8AD734061 /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2668B45EF0E040FA84BEBC54 /* Montserrat-MediumItalic.ttf */; };
 		E338C31F20054E62B73DF61F /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86AFE0537E484B03AF76D201 /* Montserrat-BoldItalic.ttf */; };
 		EDF997C1E0E84927B36B5108 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F2C3C2884C244EAA8938389 /* Montserrat-Black.ttf */; };
-		FF66E59025343509005FC137 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF66E58F25343509005FC137 /* GoogleService-Info.plist */; };
+		FF7BAEF125442D3A00291693 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF7BAEF025442D3A00291693 /* GoogleService-Info.plist */; };
 		FFE151212CE04BB68DD4F00F /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15EC97BB224F4E88AA8653DC /* Montserrat-ThinItalic.ttf */; };
 /* End PBXBuildFile section */
 
@@ -104,7 +104,7 @@
 		EEEB37D3847143739B58C1F5 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBoldItalic.ttf"; path = "../assets/fonts/Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		F204D57BBEA78E8FD006C222 /* Pods-keen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-keen.debug.xcconfig"; path = "Target Support Files/Pods-keen/Pods-keen.debug.xcconfig"; sourceTree = "<group>"; };
 		F63A1D2FF9C642840324C2CE /* libPods-keen-keenTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-keen-keenTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FF66E58F25343509005FC137 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FF7BAEF025442D3A00291693 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,7 +222,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				FF66E58F25343509005FC137 /* GoogleService-Info.plist */,
+				FF7BAEF025442D3A00291693 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* keen */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* keenTests */,
@@ -425,7 +425,7 @@
 				0CFAB74931DF47EB9DCE2AC5 /* Montserrat-SemiBoldItalic.ttf in Resources */,
 				589615972B7941BB94E906EA /* Montserrat-Thin.ttf in Resources */,
 				FFE151212CE04BB68DD4F00F /* Montserrat-ThinItalic.ttf in Resources */,
-				FF66E59025343509005FC137 /* GoogleService-Info.plist in Resources */,
+				FF7BAEF125442D3A00291693 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

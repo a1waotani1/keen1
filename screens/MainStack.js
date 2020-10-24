@@ -7,7 +7,7 @@ import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FeatherIcons from 'react-native-vector-icons/Feather';
 import IonIcons from 'react-native-vector-icons/Ionicons';
-import firestore from '@react-native-firebase/firestore';
+
 
 import HomeScreen from '../screens/HomeScreen';
 import CourseScreen from '../screens/CourseScreen';
@@ -15,7 +15,7 @@ import CommunityScreen from '../screens/CommunityScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SearchScreen from '../screens/SearchScreen';
 import DiscoverScreen from '../screens/DiscoverScreen';
-import BasicCourse1Screen from '../screens/BasicCourse1';
+
 
 
 const HomeStack = createStackNavigator();
@@ -32,7 +32,6 @@ const Tab = createBottomTabNavigator();
 
 const MainStack = () => {
     const { user } = useContext(AuthContext);
-    const [progress, setProgress] = useState(0)
     return (
         <Tab.Navigator
             tabBarOptions={{
@@ -48,16 +47,6 @@ const MainStack = () => {
                     tabBarIcon: ({ color, size }) => (
                         <Icons name="home-variant" color={color} size={30} />
                     ),
-                }}
-                listeners={{
-                    tabPress:
-                        async function myAsyncEffect() {
-                            const firebasedata = await firestore().collection('courses').doc(user.uid).get();
-                            const count = Object.values(firebasedata.data()).filter(v => v).length * 0.25;
-                            setProgress(count)
-
-                        }
-
                 }}
 
             />
@@ -133,9 +122,22 @@ const HomeStackScreen = ({ navigation }) => (
         <ProfileStack.Screen
             name="Profile"
             options={{
-                title: 'Profile Screen',
+                title: '',
             }}
             component={ProfileScreen}
+            options={() => ({
+                headerLeft: () => (
+                    <View style={{ marginLeft: 10 }}>
+                        <IonIcons.Button
+                            name="chevron-back-outline"
+                            size={30}
+                            backgroundColor="#fff"
+                            color="#333"
+                            onPress={() => navigation.navigate('Home')}
+                        />
+                    </View>
+                )
+            })}
         />
         <SearchStack.Screen
             name="Search"
@@ -176,28 +178,6 @@ const CommunityStackScreen = () => (
         <CommunityStack.Screen
             name="Community"
             component={CommunityScreen}
-            options={{
-                headerRight: () => (
-                    <View style={{ marginRight: 10 }}>
-                        <FeatherIcons.Button
-                            name="search"
-                            size={30}
-                            backgroundColor="#fff"
-                            color="#000000"
-                        />
-                    </View>
-                ),
-                headerLeft: () => (
-                    <View style={{ marginLeft: 10 }}>
-                        <FeatherIcons.Button
-                            name="user"
-                            size={30}
-                            backgroundColor="#fff"
-                            color="#000000"
-                        />
-                    </View>
-                ),
-            }}
         />
     </CommunityStack.Navigator>
 );
@@ -213,30 +193,6 @@ const DiscoverStackScreen = ({ navigation }) => (
         <DiscoverStack.Screen
             name="Discover"
             component={DiscoverScreen}
-        />
-        <BasicCourse1Stack.Screen
-            name="Basic"
-            component={BasicCourse1Screen}
-            options={() => ({
-                title: '',
-                headerTransparent: true,
-                headerStyle: {
-                    backgroundColor: '#fff',
-                    shadowColor: '#fff',
-
-                },
-                headerLeft: () => (
-                    <View style={{ marginLeft: 10 }}>
-                        <IonIcons.Button
-                            name="chevron-back-outline"
-                            size={30}
-                            backgroundColor="#fff"
-                            color="#333"
-                            onPress={() => navigation.navigate('Discover')}
-                        />
-                    </View>
-                )
-            })}
         />
     </DiscoverStack.Navigator>
 );

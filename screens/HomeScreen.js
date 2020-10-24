@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { AuthContext } from '../navigation/AuthProvider';
@@ -8,20 +8,30 @@ import { ProgressCircle } from 'react-native-svg-charts';
 
 const HomeScreen = () => {
     const { user } = useContext(AuthContext);
-    const [progress, setProgress] = useState(0)
+    const [progress, setProgress] = useState(0);
+    const [state, setState] = useState("loading (4 sec)...");
 
     async function myAsyncEffect() {
-        const firebasedata = await firestore().collection('courses').doc(user.uid).get();
+        const firebasedata = await firestore().collection('Courses').doc(user.uid).get();
         const count = Object.values(firebasedata.data()).filter(v => v).length * 0.25;
         setProgress(count)
-        Alert.alert(JSON.stringify(count))
+        // Alert.alert(JSON.stringify(count))
     }
-    useEffect(() => { myAsyncEffect() }, []);
+    useEffect(() => {
+        let isMounted = true;
+        myAsyncEffect().then(data => {
+            if (isMounted) setState(data);
+        })
+        return () => { isMounted = false };
+    });
 
     return (
         <ScrollView style={styles.container}>
             <View>
-                <Text style={styles.headerTxt}>Today's Stats</Text>
+                <Text style={styles.headerTxt}>Good job today! Let's take things one day
+                at a time!
+                </Text>
+                <Text style={styles.headerTxt1}>Today's Stats</Text>
                 <View>
                     <ProgressCircle
                         style={{ height: 150, marginBottom: 20, }}
@@ -29,7 +39,7 @@ const HomeScreen = () => {
                         progressColor={'#7DCEA0'}
                         strokeWidth={10}
                     />
-                    <Text style={styles.dataTxt}>{progress * 100}% complete</Text>
+                    <Text style={styles.dataTxt}>{progress * 100}% Done!</Text>
                 </View>
                 <Text style={styles.titleTxt}>Your Ongoing Course</Text>
                 <TouchableOpacity>
@@ -79,16 +89,25 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     headerTxt: {
+        fontFamily: 'Montserrat-Bold',
+        letterSpacing: 1,
+        fontSize: 22,
+        marginBottom: 20,
+        marginTop: 10,
+    },
+    headerTxt1: {
         fontFamily: 'Montserrat-SemiBold',
         letterSpacing: 1,
         fontSize: 20,
         marginBottom: 20,
+        color: "#828282",
     },
     titleTxt: {
         fontFamily: 'Montserrat-Medium',
         fontSize: 16,
         marginBottom: 20,
         letterSpacing: 1,
+        color: "#828282",
     },
     linearGradient: {
         height: 80,
@@ -108,7 +127,8 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-SemiBold',
         fontSize: 30,
         letterSpacing: 2,
-        marginTop: 20
+        marginBottom: 20,
+        marginRight: 'auto',
 
     }
 });

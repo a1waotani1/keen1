@@ -1,24 +1,31 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, Alert } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Alert, } from 'react-native';
 import { AuthContext } from '../navigation/AuthProvider';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
 import firestore from '@react-native-firebase/firestore';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const ProfileScreen = () => {
     const { user, logout } = useContext(AuthContext);
-    const [progress, setProgress] = useState(0)
+    const [progress, setProgress] = useState(0);
+    const [state, setState] = useState("loading (4 sec)...");
 
     async function myAsyncEffect() {
-        const firebasedata = await firestore().collection('courses').doc(user.uid).get();
+        const firebasedata = await firestore().collection('Courses').doc(user.uid).get();
         const count = Object.values(firebasedata.data()).filter(v => v).length * 0.25;
         setProgress(count)
         // Alert.alert(JSON.stringify(count))
     }
-    useEffect(() => { myAsyncEffect() });
-
+    useEffect(() => {
+        let isMounted = true;
+        myAsyncEffect().then(data => {
+            if (isMounted) setState(data);
+        })
+        return () => { isMounted = false };
+    });
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <View style={{ flexDirection: "row", alignItems: 'center', marginBottom: 20 }}>
                 <Image
                     style={styles.tinyLogo}
@@ -42,25 +49,25 @@ const ProfileScreen = () => {
                 </TouchableOpacity>
                 <Text style={styles.titleTxt}>Amount of courses finished : 1</Text>
             </View>
-            <View style={{ flexDirection: "column" }}>
-                <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}>
+            <View style={{ flexDirection: "column", marginTop: 20, }}>
+                <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 30 }}>
                     <IonIcons name="settings-sharp" size={30} color="#333" />
                     <Text style={styles.itemTxt}>settings</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}>
+                <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 30 }}>
                     <IonIcons name="help-circle" size={30} color="#333" />
                     <Text style={styles.itemTxt}>help & feedback</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => logout()}
-                    style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}
+                    style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 30 }}
                 >
                     <IonIcons name="exit" size={30} color="#333" />
                     <Text style={styles.itemTxt}>logout</Text>
                 </TouchableOpacity>
             </View>
 
-        </View>
+        </ScrollView>
     );
 }
 

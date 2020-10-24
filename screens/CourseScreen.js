@@ -1,16 +1,13 @@
-import React, { useContext, useState, createContext, useEffect } from 'react';
-import { View, Text, StyleSheet, Alert, ScrollView } from 'react-native';
+import React, { useContext, useState, useEffect } from 'react';
+import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native';
 import { AuthContext } from '../navigation/AuthProvider';
 import LinearGradient from 'react-native-linear-gradient';
 import CheckBox from '@react-native-community/checkbox';
 import firestore from '@react-native-firebase/firestore';
 
 
-export const CourseContext = createContext();
-
 const CourseScreen = () => {
     const { user } = useContext(AuthContext);
-    const [progress, setProgress] = useState(0)
     const [value, setValue] = useState({
         key1: false,
         key2: false,
@@ -18,22 +15,18 @@ const CourseScreen = () => {
         key4: false,
     })
 
-
-
-    useEffect(() => { myAsyncEffect() }, []);
+    useEffect(() => { myAsyncEffect() });
     async function myAsyncEffect() {
-        const firebasedocuid = await firestore().collection('courses').doc(user.uid).get()
-        const hoge = firebasedocuid.id ? true : false
-        // Alert.alert(JSON.stringify(hoge))
-        if (hoge == false) {
-            // Alert.alert('hoge')
+        const firebasedata = await firestore().collection('Courses').doc(user.uid).get()
+        const hoge = firebasedata.id ? true : false
+        if (hoge == true) {
             await firestore()
-                .collection('courses')
+                .collection('Courses')
                 .doc(user.uid)
                 .set(value);
         } else {
-            setValue(firebasedocuid.data())
-
+            setValue(await firebasedata.data())
+            // Alert.alert('error')
         }
     }
 
@@ -42,52 +35,10 @@ const CourseScreen = () => {
         tempValue[key] = !tempValue[key];
         setValue(tempValue);
         await firestore()
-            .collection('courses')
+            .collection('Courses')
             .doc(user.uid)
             .update(value);
     }
-
-    const ProgressData = async () => {
-        const firebasedata = await firestore().collection('courses').doc(user.uid).get();
-        const count = Object.values(firebasedata.data()).filter(v => v).length;
-
-        // Alert.alert(JSON.stringify(count))
-    }
-
-    // const firebasedocuid = await firestore().collection('courses').where(firestore().FieldPath.documentId(), '==', 'b8fTkdwKcgeHgZHPEpvj').get()
-    // Alert.alert(user.uid)
-
-    // useEffect = (async () => {
-    //     if (!firebasedocuid) {
-    //         await firestore()
-    //             .collection('courses')
-    //             .doc(user.uid)
-    //             .add({
-    //                 complete: value,
-    //             });
-    //     }
-    // })
-
-    // const toggleComplete = async () => {
-    //     await firestore()
-    //         .collection('courses')
-    //         .doc(user.uid)
-    //         .update({
-    //             complete: value,
-    //         });
-    // }
-
-    // const toggleComplete = async (key) => {
-    //     let tempValue = value;
-    //     tempValue[key] = !tempValue[key];
-    //     setValue(tempValue);
-    //     await firestore()
-    //         .collection('courses')
-    //         // .doc(id)
-    //         .add({
-    //             complete: value
-    //         })
-    // }
 
     return (
         <LinearGradient
