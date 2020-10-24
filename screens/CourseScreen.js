@@ -10,6 +10,7 @@ export const CourseContext = createContext();
 
 const CourseScreen = () => {
     const { user } = useContext(AuthContext);
+    const [progress, setProgress] = useState(0)
     const [value, setValue] = useState({
         key1: false,
         key2: false,
@@ -18,7 +19,9 @@ const CourseScreen = () => {
     })
 
 
-    useEffect(async () => {
+
+    useEffect(() => { myAsyncEffect() }, []);
+    async function myAsyncEffect() {
         const firebasedocuid = await firestore().collection('courses').doc(user.uid).get()
         const hoge = firebasedocuid.id ? true : false
         // Alert.alert(JSON.stringify(hoge))
@@ -32,7 +35,7 @@ const CourseScreen = () => {
             setValue(firebasedocuid.data())
 
         }
-    }, [])
+    }
 
     const toggleComplete = async (key) => {
         let tempValue = value;

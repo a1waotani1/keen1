@@ -12,28 +12,7 @@ const BasicCourse = ({ navigation }) => {
     const { user } = useContext(AuthContext);
     return (
         <ScrollView style={styles.container}>
-            <View styles={styles.headerContainer}>
-                <LinearGradient
-                    colors={['#7DCEA0', '#FCD46F']}
-                    style={styles.linearGradient}
-                >
-                    <View style={styles.headerItems}>
-                        <Text style={styles.headerTxt}>
-                            Basic Course
-                    </Text>
-                        <Text style={styles.headerTxt2}>
-                            This course will help you start your keen journey {"\n"}to
-                            a better lifestyle habit
-                    </Text>
-                        <IonIcons.Button
-                            name="play"
-                            color="#333"
-                            backgroundColor="transparent"
-                        // onPress={() => navigation.navigate('Basic2')}
-                        />
-                    </View>
-                </LinearGradient>
-            </View>
+
             <View>
                 <Text style={styles.titleTxt}>steps</Text>
             </View>

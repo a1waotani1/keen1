@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { AuthContext } from '../navigation/AuthProvider';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FeatherIcons from 'react-native-vector-icons/Feather';
 import IonIcons from 'react-native-vector-icons/Ionicons';
+import firestore from '@react-native-firebase/firestore';
 
 import HomeScreen from '../screens/HomeScreen';
 import CourseScreen from '../screens/CourseScreen';
@@ -27,61 +29,76 @@ const BasicCourse1Stack = createStackNavigator();
 
 const Tab = createBottomTabNavigator();
 
-const MainStack = () => (
-    <Tab.Navigator
-        tabBarOptions={{
-            activeTintColor: '#7DCEA0',
-            inactiveTintColor: '#000000',
 
-        }}>
-        <Tab.Screen
-            name="ホーム"
-            component={HomeStackScreen}
-            options={{
-                tabBarLabel: 'ホーム',
-                tabBarIcon: ({ color, size }) => (
-                    <Icons name="home-variant" color={color} size={30} />
-                ),
-            }}
-        />
-        <Tab.Screen
-            name="コース"
-            component={CourseStackScreen}
-            options={{
-                tabBarLabel: 'コース',
-                tabBarIcon: ({ color, size }) => (
-                    <Icons name="map" color={color} size={30} />
-                ),
-            }}
-        />
-        <Tab.Screen
-            name="コミュニティ"
-            component={CommunityStackScreen}
-            options={{
-                tabBarLabel: 'コミュニティ',
-                tabBarIcon: ({ color, size }) => (
-                    <MaterialIcons name="group" color={color} size={30} />
-                ),
-            }}
-        />
-        <Tab.Screen
-            name="見つける"
-            component={DiscoverStackScreen}
-            options={{
-                tabBarLabel: '見つける',
-                tabBarIcon: ({ color, size }) => (
-                    <FeatherIcons name="server" color={color} size={30} />
-                ),
-            }}
-        />
-    </Tab.Navigator>
+const MainStack = () => {
+    const { user } = useContext(AuthContext);
+    const [progress, setProgress] = useState(0)
+    return (
+        <Tab.Navigator
+            tabBarOptions={{
+                activeTintColor: '#7DCEA0',
+                inactiveTintColor: '#000000',
 
-);
+            }}>
+            <Tab.Screen
+                name="ホーム"
+                component={HomeStackScreen}
+                options={{
+                    tabBarLabel: 'ホーム',
+                    tabBarIcon: ({ color, size }) => (
+                        <Icons name="home-variant" color={color} size={30} />
+                    ),
+                }}
+                listeners={{
+                    tabPress:
+                        async function myAsyncEffect() {
+                            const firebasedata = await firestore().collection('courses').doc(user.uid).get();
+                            const count = Object.values(firebasedata.data()).filter(v => v).length * 0.25;
+                            setProgress(count)
+
+                        }
+
+                }}
+
+            />
+            <Tab.Screen
+                name="コース"
+                component={CourseStackScreen}
+                options={{
+                    tabBarLabel: 'コース',
+                    tabBarIcon: ({ color, size }) => (
+                        <Icons name="map" color={color} size={30} />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="コミュニティ"
+                component={CommunityStackScreen}
+                options={{
+                    tabBarLabel: 'コミュニティ',
+                    tabBarIcon: ({ color, size }) => (
+                        <MaterialIcons name="group" color={color} size={30} />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="見つける"
+                component={DiscoverStackScreen}
+                options={{
+                    tabBarLabel: '見つける',
+                    tabBarIcon: ({ color, size }) => (
+                        <FeatherIcons name="server" color={color} size={30} />
+                    ),
+                }}
+            />
+        </Tab.Navigator>
+
+    )
+};
 
 export default MainStack;
 
 const HomeStackScreen = ({ navigation }) => (
-
     <HomeStack.Navigator>
         <HomeStack.Screen
             name="Home"

@@ -1,12 +1,40 @@
-import React, { useContext } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal } from 'react-native';
 import { AuthContext } from '../navigation/AuthProvider';
 import LinearGradient from 'react-native-linear-gradient';
 
+
 const DiscoverScreen = ({ navigation }) => {
     const { user } = useContext(AuthContext);
+    const [modalOpen, setModalOpen] = useState(false);
     return (
         <ScrollView style={styles.container}>
+            <Modal visible={modalOpen}
+                animationType="slide">
+                <View style={{ marginTop: 40 }}>
+                    <View styles={styles.headerContainer}>
+                        <LinearGradient
+                            colors={['#7DCEA0', '#FCD46F']}
+                            style={styles.linearGradient}
+                        >
+                            <View style={styles.headerItems}>
+                                <Text style={styles.headerTxt}>
+                                    Basic Course
+                    </Text>
+                                <Text style={styles.headerTxt2}>
+                                    This course will help you start your keen journey {"\n"}to
+                            a better lifestyle habit
+                    </Text>
+                            </View>
+                        </LinearGradient>
+                    </View>
+                </View>
+                <TouchableOpacity style={styles.StartBtn}
+                    onPress={() => setModalOpen(false)}>
+                    <Text style={styles.btnTxt}>START NOW
+                                </Text>
+                </TouchableOpacity>
+            </Modal>
             <View style={styles.headerContainer}>
                 <LinearGradient
                     colors={['#7DCEA0', '#FCD46F']}
@@ -19,10 +47,8 @@ const DiscoverScreen = ({ navigation }) => {
                             A way to get things started
                     </Text>
                         <TouchableOpacity style={styles.StartBtn}
-                            onPress={() => navigation.navigate("Basic")}>
-                            <Text style={styles.btnTxt}
-                            >
-                                START NOW
+                            onPress={() => setModalOpen(true)}>
+                            <Text style={styles.btnTxt}>START NOW
                                 </Text>
                         </TouchableOpacity>
                     </View>
@@ -74,7 +100,7 @@ const DiscoverScreen = ({ navigation }) => {
                 style={styles.linearGradient}>
 
             </LinearGradient>
-        </ScrollView>
+        </ScrollView >
     );
 }
 
