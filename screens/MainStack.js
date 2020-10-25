@@ -8,7 +8,6 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FeatherIcons from 'react-native-vector-icons/Feather';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 
-
 import HomeScreen from '../screens/HomeScreen';
 import CourseScreen from '../screens/CourseScreen';
 import CommunityScreen from '../screens/CommunityScreen';
@@ -16,19 +15,14 @@ import ProfileScreen from '../screens/ProfileScreen';
 import SearchScreen from '../screens/SearchScreen';
 import DiscoverScreen from '../screens/DiscoverScreen';
 
-
-
 const HomeStack = createStackNavigator();
 const CourseStack = createStackNavigator();
 const CommunityStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
 const SearchStack = createStackNavigator();
 const DiscoverStack = createStackNavigator();
-const BasicCourse1Stack = createStackNavigator();
-
 
 const Tab = createBottomTabNavigator();
-
 
 const MainStack = () => {
     const { user } = useContext(AuthContext);

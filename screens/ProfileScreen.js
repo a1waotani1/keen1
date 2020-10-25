@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, Alert, } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Alert, Modal } from 'react-native';
 import { AuthContext } from '../navigation/AuthProvider';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';

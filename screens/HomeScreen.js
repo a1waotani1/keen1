@@ -6,7 +6,7 @@ import firestore from '@react-native-firebase/firestore';
 import { ProgressCircle } from 'react-native-svg-charts';
 
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
     const { user } = useContext(AuthContext);
     const [progress, setProgress] = useState(0);
     const [state, setState] = useState("loading (4 sec)...");
@@ -18,12 +18,12 @@ const HomeScreen = () => {
         // Alert.alert(JSON.stringify(count))
     }
     useEffect(() => {
-        let isMounted = true;
-        myAsyncEffect().then(data => {
-            if (isMounted) setState(data);
-        })
-        return () => { isMounted = false };
-    });
+        const unsubscribe = navigation.addListener('focus', () => {
+            myAsyncEffect()
+        });
+        return unsubscribe;
+    }, [navigation]);
+
 
     return (
         <ScrollView style={styles.container}>

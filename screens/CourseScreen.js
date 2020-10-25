@@ -18,27 +18,32 @@ const CourseScreen = () => {
     useEffect(() => { myAsyncEffect() });
     async function myAsyncEffect() {
         const firebasedata = await firestore().collection('Courses').doc(user.uid).get()
-        const hoge = firebasedata.id ? true : false
-        if (hoge == true) {
+        // Alert.alert(JSON.stringify(firebasedata.data().key1))
+        const hoge = firebasedata.data() ? true : false
+        if (hoge == false) {
             await firestore()
                 .collection('Courses')
                 .doc(user.uid)
                 .set(value);
         } else {
-            setValue(await firebasedata.data())
+            setValue(firebasedata.data());
+
             // Alert.alert('error')
         }
+
     }
 
     const toggleComplete = async (key) => {
         let tempValue = value;
         tempValue[key] = !tempValue[key];
         setValue(tempValue);
+
         await firestore()
             .collection('Courses')
             .doc(user.uid)
             .update(value);
     }
+
 
     return (
         <LinearGradient

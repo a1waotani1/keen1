@@ -22,15 +22,21 @@ const DiscoverScreen = ({ navigation }) => {
                                     <IonIcons name="close-circle" size={30} color="rgba(102,102,102,0.4)" />
                                 </TouchableOpacity></View>
                             <View style={styles.headerItems}>
-
                                 <Text style={styles.headerTxt}>
                                     Basic Course
-                    </Text>
+                                 </Text>
                                 <Text style={styles.subTxt}>
                                     The basic course was created in order to help get you started
                                     on your new keen journey of a better self. You'll be
                                     able to wake up earlier, stay hydrated and more
-                    </Text>
+                                 </Text>
+                                <TouchableOpacity style={{
+                                    flexDirection: "row", alignItems: 'center', backgroundColor: "#fff", paddingHorizontal: 20, borderRadius: 30, paddingVertical: 5, alignSelf: 'flex-start',
+                                    marginLeft: 20, marginTop: 50,
+                                }}>
+                                    <IonIcons name="share" size={20} />
+                                    <Text style={{ fontFamily: 'Montserrat-SemiBold', fontSize: 14, paddingLeft: 4 }}>Share</Text>
+                                </TouchableOpacity>
                             </View>
                         </LinearGradient>
                     </View>
@@ -96,19 +102,21 @@ const DiscoverScreen = ({ navigation }) => {
                     </LinearGradient>
                 </TouchableOpacity>
             </ScrollView>
-            <LinearGradient
-                colors={['#FCD071', '#FDA452']}
-                style={styles.linearGradient}>
-                <View style={styles.headerItems}>
-                    <Text style={styles.headerTxt}>
-                        Fun Fact!
+            <TouchableOpacity>
+                <LinearGradient
+                    colors={['#FCD071', '#FDA452']}
+                    style={styles.linearGradient}>
+                    <View style={styles.headerItems}>
+                        <Text style={styles.headerTxt}>
+                            Fun Fact!
                     </Text>
-                    <Text style={styles.headerTxt2}>
-                        Did you know? {"\n"}
+                        <Text style={styles.headerTxt2}>
+                            Did you know? {"\n"}
                         Optimism may help you live longer !
                     </Text>
-                </View>
-            </LinearGradient>
+                    </View>
+                </LinearGradient>
+            </TouchableOpacity>
         </ScrollView >
     );
 }
@@ -161,7 +169,7 @@ const styles = StyleSheet.create({
         height: 200,
         margin: 10,
         borderRadius: 20,
-        width: 180,
+        width: 160,
     },
     btnTxt: {
         fontSize: 16,
