@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert, StatusBar } from 'react-native';
 import { AuthContext } from '../navigation/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
 import { ProgressCircle } from 'react-native-svg-charts';
@@ -26,35 +26,38 @@ const HomeScreen = ({ navigation }) => {
 
 
     return (
-        <ScrollView style={styles.container}>
-            <View>
-                <Text style={styles.headerTxt}>Good job today! Let's take things one day
-                at a time!
-                </Text>
-                <Text style={styles.headerTxt1}>Today's Stats</Text>
+        <>
+            <StatusBar barStyle="dark-content" />
+            <ScrollView style={styles.container}>
                 <View>
-                    <ProgressCircle
-                        style={{ height: 150, marginBottom: 20, }}
-                        progress={progress}
-                        progressColor={'#7DCEA0'}
-                        strokeWidth={10}
-                    />
-                    <Text style={styles.dataTxt}>{progress * 100}% Done!</Text>
+                    <Text style={styles.headerTxt}>Good job today! Let's take things one day
+                    at a time!
+                </Text>
+                    <Text style={styles.headerTxt1}>Today's Stats</Text>
+                    <View>
+                        <ProgressCircle
+                            style={{ height: 150, marginBottom: 20, }}
+                            progress={progress}
+                            progressColor={'#7DCEA0'}
+                            strokeWidth={10}
+                        />
+                        <Text style={styles.dataTxt}>{progress * 100}% Done!</Text>
+                    </View>
+                    <Text style={styles.titleTxt}>Your Ongoing Course</Text>
+                    <TouchableOpacity>
+                        <LinearGradient
+                            colors={['#7DCEA0', '#FCD46F']}
+                            style={styles.linearGradient}
+                            start={{ x: 0, y: 0.5 }}
+                            end={{ x: 1, y: 0.5 }}>
+                            <Text style={styles.courseTxt}>Basic Course</Text>
+                        </LinearGradient>
+
+                    </TouchableOpacity>
+
                 </View>
-                <Text style={styles.titleTxt}>Your Ongoing Course</Text>
-                <TouchableOpacity>
-                    <LinearGradient
-                        colors={['#7DCEA0', '#FCD46F']}
-                        style={styles.linearGradient}
-                        start={{ x: 0, y: 0.5 }}
-                        end={{ x: 1, y: 0.5 }}>
-                        <Text style={styles.courseTxt}>Basic Course</Text>
-                    </LinearGradient>
-
-                </TouchableOpacity>
-
-            </View>
-        </ScrollView >
+            </ScrollView >
+        </>
     );
 }
 

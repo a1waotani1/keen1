@@ -14,6 +14,7 @@ import CommunityScreen from '../screens/CommunityScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SearchScreen from '../screens/SearchScreen';
 import DiscoverScreen from '../screens/DiscoverScreen';
+import SettingScreen from '../screens/SettingScreen';
 
 const HomeStack = createStackNavigator();
 const CourseStack = createStackNavigator();
@@ -21,6 +22,7 @@ const CommunityStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
 const SearchStack = createStackNavigator();
 const DiscoverStack = createStackNavigator();
+const SettingStack = createStackNavigator();
 
 const Tab = createBottomTabNavigator();
 
@@ -128,6 +130,26 @@ const HomeStackScreen = ({ navigation }) => (
                             backgroundColor="#fff"
                             color="#333"
                             onPress={() => navigation.navigate('Home')}
+                        />
+                    </View>
+                )
+            })}
+        />
+        <SettingStack.Screen
+            name="Settings"
+            options={{
+                title: 'Settings',
+            }}
+            component={SettingScreen}
+            options={() => ({
+                headerLeft: () => (
+                    <View style={{ marginLeft: 10 }}>
+                        <IonIcons.Button
+                            name="chevron-back-outline"
+                            size={30}
+                            backgroundColor="#fff"
+                            color="#333"
+                            onPress={() => navigation.navigate('Profile')}
                         />
                     </View>
                 )

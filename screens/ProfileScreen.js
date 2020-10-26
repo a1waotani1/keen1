@@ -6,7 +6,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import firestore from '@react-native-firebase/firestore';
 import { ScrollView } from 'react-native-gesture-handler';
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }) => {
     const { user, logout } = useContext(AuthContext);
     const [progress, setProgress] = useState(0);
     const [state, setState] = useState("loading (4 sec)...");
@@ -45,12 +45,12 @@ const ProfileScreen = () => {
                         <Text style={styles.courseTxt}>Basic Course</Text>
                         <Text style={styles.courseTxt}>{progress * 100}%</Text>
                     </LinearGradient>
-
                 </TouchableOpacity>
                 <Text style={styles.titleTxt}>Amount of courses finished : 1</Text>
             </View>
             <View style={{ flexDirection: "column", marginTop: 20, }}>
-                <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 30 }}>
+                <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 30 }}
+                    onPress={() => navigation.navigate("Settings")}>
                     <IonIcons name="settings-sharp" size={30} color="#333" />
                     <Text style={styles.itemTxt}>settings</Text>
                 </TouchableOpacity>
@@ -66,8 +66,7 @@ const ProfileScreen = () => {
                     <Text style={styles.itemTxt}>logout</Text>
                 </TouchableOpacity>
             </View>
-
-        </ScrollView>
+        </ScrollView >
     );
 }
 

@@ -13,7 +13,8 @@ const RegisterScreen = ({ navigation }) => {
             <Text style={styles.logo}>Create A New Account</Text>
 
             <TextInput style={styles.input}
-                placeholder="メール"
+                placeholder="Email Address"
+                placeholderTextColor="#B6B6B6"
                 keyboardType="email-address"
                 onChangeText={(userEmail) => setEmail(userEmail)}
                 autoCapitalize="none"
@@ -21,14 +22,15 @@ const RegisterScreen = ({ navigation }) => {
             />
 
             <TextInput style={styles.input}
-                placeholder="パスワード"
+                placeholder="Password"
+                placeholderTextColor="#B6B6B6"
                 onChangeText={(userPassword) => setPassword(userPassword)}
                 secureTextEntry />
 
-            <TextInput style={styles.input}
+            {/* <TextInput style={styles.input}
                 placeholder="パスワードの確認"
                 onChangeText={(userPassword) => setPassword(userPassword)}
-                secureTextEntry />
+                secureTextEntry /> */}
 
             <View style={styles.BtnContainer}>
 

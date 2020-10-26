@@ -11,14 +11,16 @@ const LoginScreen = ({ navigation }) => {
         <View style={styles.container}>
             <Text style={styles.logo}>keen</Text>
             <TextInput style={styles.input}
-                placeholder="メール"
+                placeholder="Email Address"
+                placeholderTextColor="#B6B6B6"
                 keyboardType="email-address"
                 onChangeText={(userEmail) => setEmail(userEmail)}
                 autoCapitalize="none"
                 autoCorrect={false}
             />
             <TextInput style={styles.input}
-                placeholder="パスワード"
+                placeholder="Password"
+                placeholderTextColor="#B6B6B6"
                 onChangeText={(userPassword) => setPassword(userPassword)}
                 secureTextEntry
             />
